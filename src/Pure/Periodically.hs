@@ -35,6 +35,6 @@ instance Typeable a => Pure (Periodically a) where
     in
         def
             { construct = ask self >>= action
-            , executing = execute
+            , executing = \st -> execute >> pure st
             , Pure.Data.View.render = \Periodically {..} -> render
             }
