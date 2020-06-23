@@ -22,7 +22,7 @@ periodically :: Typeable a => Int -> IO a -> (a -> View) -> View
 periodically every action render = View Periodically {..}
 
 instance Typeable a => Pure (Periodically a) where
-  view = LibraryComponentIO $ \self ->
+  view = Component $ \self ->
     let
         execute = do
           Periodically {..} <- ask self
